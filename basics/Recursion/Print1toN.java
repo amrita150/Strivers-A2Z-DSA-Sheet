@@ -3,13 +3,13 @@ class Print1toN
     
   public static void printNos(int N)
     {
-        //Your code here
+        //base case
         if(N==0)
         {
             return;
         }
         
-        printNos(N-1);
+        printNos(N-1); //recursive call
         System.out.print(N + " " );
         
     }
