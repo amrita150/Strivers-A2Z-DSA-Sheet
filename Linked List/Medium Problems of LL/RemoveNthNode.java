@@ -11,7 +11,7 @@ public class  RemoveNthNode{
     }
 
     public static void remove(Node head , int n ){
-        int size = 1;
+        int size = 0;
         Node current = head;
         while (current != null){
             current = current.next;
