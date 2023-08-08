@@ -45,7 +45,7 @@ public class FindIntersection {
         }
 
         while (temp1 != null && temp2 != null) {
-            if (temp1.data == temp2.data) {
+            if (temp1 == temp2) {
                 return temp1;
             }
             temp1 = temp1.next;
@@ -75,16 +75,17 @@ public class FindIntersection {
     }
 
     public static void main(String[] args) {
+        Node commonNode = new Node(5);
         Node head1 = new Node(5);
-        head1.next = new Node(8);
-        head1.next.next = new Node(7);
+        head1.next = new Node(3);
+        head1.next.next = commonNode;
         head1.next.next.next = new Node(10);
         head1.next.next.next.next = new Node(12);
         head1.next.next.next.next.next = new Node(15);
         printLinkedList(head1);
 
-        Node head2 = new Node(9);
-        head2.next = new Node(10);
+        Node head2 = new Node(10);;
+        head2.next = commonNode;
         head2.next.next = new Node(12);
         head2.next.next.next= new Node(15);
         printLinkedList(head2);
