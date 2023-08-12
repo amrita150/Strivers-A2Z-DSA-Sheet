@@ -31,6 +31,26 @@ public class  RemoveNthNode{
         prev.next = prev.next.next;
     }
 
+    //we can also do this using slow-fast approach
+    public static int findKth(Node head , int k){
+        Node slow = head;
+        Node fast = head;
+
+        for (int i = 0; i < k; i++) {
+            if(fast== null){
+                return -1;  //k is greater than the length of the linked list
+            }
+            fast = fast.next;
+        }
+
+        while(fast!=null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        return slow.data;
+    }
+
     public static void printLinked(Node startNode) {
         Node current = startNode;
         while (current != null) {
@@ -48,7 +68,7 @@ public class  RemoveNthNode{
         head.next.next.next.next = new Node(5);
         int n = 3;
         printLinked(head);
-
+        System.out.println(findKth(head, n)); 
         remove(head , n );
         printLinked(head);    
     }
