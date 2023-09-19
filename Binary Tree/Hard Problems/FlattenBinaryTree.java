@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class FlattenBinaryTree {
 
 static class TreeNode {
@@ -22,6 +24,32 @@ static class TreeNode {
         root.right = prev;
         root.left = null;
         prev = root;
+    }
+
+    //using stack
+    public void flatten1(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        Stack<TreeNode> st = new Stack<>();
+        TreeNode curr = root;
+        st.push(curr);
+        while(!st.isEmpty()){
+            curr = st.pop();
+            if(curr.right!=null){
+                st.push(curr.right);
+            }
+            if(curr.left!=null){
+                st.push(curr.left);
+            }
+
+            if(!st.isEmpty()){
+            curr.right = st.peek();
+            }
+            curr.left = null;
+            
+        }
+
     }
     
     public static void main(String[] args) {        
