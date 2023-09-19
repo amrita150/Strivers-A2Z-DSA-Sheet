@@ -51,6 +51,28 @@ static class TreeNode {
         }
 
     }
+
+    //using morris traversal
+    public void flatten2(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        TreeNode curr = root;
+        while(curr!=null){
+            if(curr.left!=null){
+                //find predecessor
+                TreeNode pred = curr.left;
+                while(pred.right!=null){
+                    pred = pred.right;
+                } 
+
+                pred.right = curr.right;
+                curr.right = curr.left;
+                curr.left = null;
+            }
+            curr = curr.right;
+        }
+    }
     
     public static void main(String[] args) {        
         TreeNode root = new TreeNode(1);
