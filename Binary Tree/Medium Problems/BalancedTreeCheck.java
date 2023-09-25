@@ -40,6 +40,27 @@ public class BalancedTreeCheck {
         return isBalanced(root.left) && isBalanced(root.right);
     }
 
+    // time complexity O(n)
+    public static int isBalancedOptimized(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = isBalancedOptimized(root.left);
+        if(leftHeight == -1){
+            return -1;
+        }
+        int rightHeight = isBalancedOptimized(root.right);
+        if(rightHeight==-1){
+            return -1;
+        }
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        } else{
+            return Math.max(leftHeight , rightHeight) + 1 ;
+        }
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -49,8 +70,10 @@ public class BalancedTreeCheck {
         root.left.left.left = new TreeNode(4);
         root.left.left.right = new TreeNode(4);
 
-        boolean result = isBalanced(root);
-
-        System.out.println("Is the tree balanced? " + result);
+        if(isBalancedOptimized(root)< 0){
+            System.out.println("false");
+        }else{
+            System.out.println("true");
+        }
     }
 }
